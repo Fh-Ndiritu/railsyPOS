@@ -40,7 +40,7 @@ group :development, :test do
   gem "brakeman", require: false # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "rubocop-rails-omakase", require: false # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
 
-  gem "rspec-rails", "~> 6.0" # Testing framework
+  gem "rspec-rails", "~> 7.1" # Testing framework
   gem "dotenv-rails" # Load environment variables from .env
   gem "pry-byebug" # Debugging with Pry
   gem "pry-rails" # Integrate Pry with Rails console
