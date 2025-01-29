@@ -1,0 +1,21 @@
+<%= link_to @href,
+class: "item-thumbnail rounded-lg h-48 md:h-48 lg:h-48 text-normal text-white hover:text-text-secondary duration-200 bg-bg-secondary  hover:bg-bg-tertiary #{@classes} " do %>
+  <div class="thumbnail-content ">
+    <!-- Image in top-right corner -->
+    <div class="image-container">
+      <% if @image_url %>
+        <img src="<%= @image_url %>" alt="<%= @title %>" class="item-image">
+      <% elsif @svg %>
+        <!-- Icon -->
+        <!--<span class="">-->
+        <%= raw @svg %>
+        <!--</span>-->
+      <% end %>
+    </div>
+    <!-- Stacked title and count at bottom-left -->
+    <div class="text-container">
+      <div class="item-title text-base font-semibold"><%= @title %></div>
+      <div class="item-count"><%= @count %> items</div>
+    </div>
+  </div>
+<% end %>
