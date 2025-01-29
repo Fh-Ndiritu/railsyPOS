@@ -19,6 +19,8 @@ module.exports = {
       colors: {
         'text-tertiary': '#FAC1D9',
         'bg-tertiary': '#FAC1D9',
+        'bg-secondary': '#292C2D',
+        'text-secondary': '#333333'
       }
     },
   },
