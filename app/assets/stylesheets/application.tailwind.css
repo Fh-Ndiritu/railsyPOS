@@ -11,3 +11,8 @@
 }
 
 */
+
+.sidebar-left .active .btn {
+  color: black;
+  background: #fac1d9;
+}

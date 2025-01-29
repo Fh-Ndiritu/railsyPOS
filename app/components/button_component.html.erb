@@ -1,0 +1,27 @@
+<% if @href.present? %>
+  <!-- Render as link -->
+  <a href="<%= @href %>"
+    class="btn flex w-full flex-col items-center text-white  font-semibold py-2 px-8 rounded-lg  hover:bg-bg-tertiary hover:text-black text-center duration-500 <%= @classes %>">
+    <!-- Icon -->
+    <span class="mb-1 rounded-full bg-white text-4xl">
+      <%= raw @svg %>
+    </span>
+    <!-- Button Text -->
+    <span>
+      <%= @text %>
+    </span>
+  </a>
+<% else %>
+  <!-- Render as button -->
+  <button type="<%= @type %>"
+    class="btn flex w-full flex-col items-center text-white font-semibold py-2 px-8 rounded-lg hover:bg-bg-tertiary text-center duration-500 <%= @classes %>">
+    <!-- Icon -->
+    <span class="p-2 mb-2 rounded-full bg-white">
+      <%= raw @svg %>
+    </span>
+    <!-- Button Text -->
+    <span>
+      <%= @text %>
+    </span>
+  </button>
+<% end %>
