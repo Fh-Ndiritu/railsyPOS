@@ -1,27 +1,42 @@
-<%= form_with(model: category, class: "contents") do |form| %>
+<%= simple_form_for category, html: { class: "" } do |form| %>
   <% if category.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
-
-      <ul class="list-disc ml-6">
-        <% category.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-4 py-3 font-medium rounded-lg">
+      <h2 class="text-lg font-semibold"><%= pluralize(category.errors.count, "error") %> prevented this category from being saved:</h2>
+      <ul class="list-disc ml-6 mt-2">
+        <% category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": category.errors[:name].none?, "border-red-400 focus:outline-red-600": category.errors[:name].any?}] %>
+  <div class="my-8">
+    <%= form.input :image, label: "Image", as: :file,
+      label_html: { class: "text-white" },
+      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-space-100 focus:bg-gray-300 focus:text-black" } %>
   </div>
-
-  <div class="my-5">
-    <%= form.label :image %>
-    <%= form.file_field :image, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": category.errors[:image].none?, "border-red-400 focus:outline-red-600": category.errors[:image].any?}] %>
+  <div class="my-8">
+    <%= form.input :name, label: "Name",
+      label_html: { class: "text-white" },
+      placeholder:"Enter Category Name",
+      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-space-100 focus:bg-gray-300 focus:text-black" } %>
   </div>
-
+  <div class="my-8">
+    <%= form.input :description, as: :text, label: "Description",
+    label_html: { class: "text-white" },
+    placeholder:"Write your description here ...",
+    input_html: { rows: 4, class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-space-100 focus:bg-gray-300 focus:text-black" } %>
+  </div>
+  <div class="my-8 flex items-center">
+    <%= form.input :status, as: :boolean, label: "Active?",
+      wrapper_html: { class: "flex items-center space-x-2" },
+      label_html: { class: "text-white" },
+      input_html: { class: "h-5 w-5  border-gray-300 rounded" } %>
+  </div>
   <div class="inline">
-    <%= form.submit class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+    <%= render(ButtonComponent.new(
+      text: 'Save',
+      classes: 'bg-bg-tertiary px-4 py-4 hover:bg-bg-secondary max-w-32 text-gray-900 hover:text-white hover:bg-bg-ternary'
+      )
+      ) %>
   </div>
 <% end %>

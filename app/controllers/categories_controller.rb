@@ -65,6 +65,6 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.expect(category: [ :name, :image ])
+      params.expect(category: [ :name, :image, :description ]).merge(status: params.dig(:category, :status)&.to_i)
     end
 end

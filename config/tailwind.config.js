@@ -20,7 +20,9 @@ module.exports = {
         'text-tertiary': '#FAC1D9',
         'bg-tertiary': '#FAC1D9',
         'bg-secondary': '#292C2D',
-        'text-secondary': '#333333'
+        'bg-primary': '3D4142',
+        'bg-ternary': '#5E5E5E',
+        'text-secondary': '#333333',
       }
     },
   },

@@ -2,21 +2,23 @@
   <div class="sidebar-left bg-[#292C2D] w-2/12 h-screen rounded-tr-3xl rounded-br-3xl px-4 py-6 justify-center">
     <%= render('shared/sidebar_left') %>
   </div>
-  <div class="main-section px-16 py-20 w-10/12 ">
+  <div class="main-section px-16 py-6 w-10/12 ">
     <div class="my-10 mb-4 w-full justify-between inline-flex">
       <h1 class="text-2xl font-semibold text-white">Categories</h1>
       <%= render(ButtonComponent.new(
       text: 'Add New Category',
       classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-60 text-gray-900 hover:text-white',
-      href: new_category_path
+      href: new_category_path,
+      data: { turbo_frame: 'new_category'}
       )
       ) %>
     </div>
-    <div class="my-10 mb-4 w-full justify-between grid sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-8">
+    <%= turbo_stream_from 'categories' %>
+    <div class="my-10 mb-4 w-full justify-between grid sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-8" id="categories">
       <div class="item-link active">
         <%= render(ItemThumbnailComponent.new(
         title: 'All',
-        count: Category.count,
+        count: Product.count,
         classes: '',
         href: products_path,
         svg:  '<svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,17 +28,10 @@
         )) %>
       </div>
       <% Category.active.each do |category| %>
-        <div class="item-link">
-          <%= render(ItemThumbnailComponent.new(
-        title: category.name,
-        count: category.products.count,
-        classes: '',
-        href: category_products_path(category),
-        image_url: category.image.url
-        )
-        ) %>
-        </div>
+        <%= render category %>
       <% end %>
     </div>
+    <%= turbo_frame_tag 'new_category' do %>
+    <% end %>
   </div>
 </div>

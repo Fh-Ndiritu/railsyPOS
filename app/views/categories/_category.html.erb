@@ -1,10 +1,10 @@
-<div id="<%= dom_id category %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= category.name %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Image:</strong>
-    <%= link_to category.image.filename, category.image if category.image.attached? %>
-  </p>
+<div class="item-link" id="<%= dom_id category %>">
+  <%= render(ItemThumbnailComponent.new(
+        title: category.name,
+        count: category.products_count,
+        classes: '',
+        href: category_products_path(category),
+        image_url: category.image.url
+        )
+        ) %>
 </div>
