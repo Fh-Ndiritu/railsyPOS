@@ -46,7 +46,7 @@ group :development, :test do
   gem "pry-rails" # Integrate Pry with Rails console
   gem "erb_lint" # Lint ERB files
   gem "factory_bot_rails" # Test data generation
-  gem "rubocop", "~> 1.54", ">= 1.54.2" # Ruby static code analyzer
+  gem "rubocop", "~> 1.71" # Ruby static code analyzer
   gem "rubocop-rails" # Rails-specific Rubocop rules
   gem "faker", "~> 3.3" # Generate fake data
 end
