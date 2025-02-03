@@ -5,9 +5,9 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     if @category
-      @products = Product.all
+      @products = @category.products
     else
-      @products = Product.limit(20)
+      @products = Product.limit(10)
     end
   end
 
@@ -74,6 +74,6 @@ class ProductsController < ApplicationController
     end
 
     def set_category
-      Category.find_by(id: params[:category_id])
+      @category = Category.find_by(id: params[:category_id].to_i)
     end
 end
