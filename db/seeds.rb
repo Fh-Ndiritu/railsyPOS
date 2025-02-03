@@ -8,6 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+ ActiveStorage::Current.url_options = { host: 'localhost:3000'} if Rails.env.development?
 10.times do
   FactoryBot.create(:product)
 end

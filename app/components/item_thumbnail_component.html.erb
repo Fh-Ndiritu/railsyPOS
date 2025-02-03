@@ -1,5 +1,6 @@
 <%= link_to @href,
-class: "item-thumbnail rounded-lg h-48 md:h-48 lg:h-48 text-normal text-white hover:text-text-secondary duration-200 bg-bg-secondary  hover:bg-bg-tertiary #{@classes} " do %>
+class: "item-thumbnail rounded-lg h-48 md:h-48 lg:h-48 text-normal text-white hover:text-text-secondary duration-200 bg-bg-secondary  hover:bg-bg-tertiary #{@classes} ",
+data: @data do %>
   <div class="thumbnail-content ">
     <!-- Image in top-right corner -->
     <div class="image-container">

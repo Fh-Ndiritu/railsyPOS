@@ -4,7 +4,8 @@
         count: category.products_count,
         classes: '',
         href: category_products_path(category),
-        image_url: category.image.url
+        image_url: category.image.url,
+        data: { turbo_frame: 'products'}
         )
         ) %>
 </div>
