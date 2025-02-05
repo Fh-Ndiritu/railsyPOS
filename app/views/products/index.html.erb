@@ -6,20 +6,32 @@
   <%= turbo_frame_tag 'new_product' do %>
   <% end %>
   <%= turbo_frame_tag "products" do%>
-    <div class="flex justify-between items-center text-white py-9">
-      <h1 class="font-bold text-4xl py-6">
+    <div class="flex justify-between items-center w-full  text-white py-9">
+      <div class="justify-between w-8/12 flex items-center">
+        <h1 class="font-bold text-4xl py-6 flex">
+          <% if @category %>
+            <%=  @category.name %>
+          <% else %>
+            Popular Items
+          <% end %>
+        </h1>
         <% if @category %>
-          <%=  @category.name %>
-        <% else %>
-          Popular Items
+          <%= render(ButtonComponent.new(
+          text: 'Edit Category',
+          classes: 'flex h-auto bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-60 text-gray-900 hover:text-white',
+          href: edit_category_path(@category),
+          data: {turbo_frame: 'edit_category'}
+          )) %>
         <% end %>
-      </h1>
-      <%= render(ButtonComponent.new(
+      </div>
+      <div class="w-4/12 justify-center flex">
+        <%= render(ButtonComponent.new(
       text: 'Add New Product',
       classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-60 text-gray-900 hover:text-white',
       href: new_product_path
       )
       ) %>
+      </div>
     </div>
     <div id="products" class="min-w-full">
       <% if @products.any? %>
@@ -47,7 +59,7 @@
           </tbody>
         </table>
       <% else %>
-        <p class="text-center my-10">No products found.</p>
+        <p class="text-center my-10 text-white">No products found.</p>
       <% end %>
     </div>
   <% end %>
