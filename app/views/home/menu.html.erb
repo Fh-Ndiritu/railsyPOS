@@ -34,7 +34,10 @@
     </div>
     <%= turbo_frame_tag 'new_category' do %>
     <% end %>
-    <%= turbo_frame_tag 'products' do%>
+    <%= turbo_frame_tag 'new_product' do %>
+    <% end %>
+    <%= turbo_frame_tag 'products' do %>
+      <%= render partial: 'products/index', locals: { products: @products} %>
     <% end %>
   </div>
 </div>

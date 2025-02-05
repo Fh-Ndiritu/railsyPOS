@@ -1,0 +1,47 @@
+  <%= turbo_frame_tag "products" do%>
+  <div class="flex justify-between items-center text-white py-9">
+    <h1 class="font-bold text-4xl py-6">
+      <% if @category %>
+        <%=  @category.name %>
+      <% else %>
+        Popular Items
+      <% end %>
+    </h1>
+    <%= render(ButtonComponent.new(
+      text: 'Add New Product',
+      classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-60 text-gray-900 hover:text-white',
+      href: new_product_path,
+      data: {turbo_frame: 'new_product'}
+      )
+      ) %>
+  </div>
+  <div id="products" class="min-w-full">
+    <% if @products.any? %>
+      <table class="min-w-full rounded-lg overflow-hidden text-white items-center">
+        <thead class="py-4">
+          <tr>
+            <th class="px-4 py-2"><input type="checkbox"></th>
+            <th class="px-4 py-2">Product</th>
+            <th class="px-4 py-2">Name</th>
+            <th class="px-4 py-2">Item ID</th>
+            <th class="px-4 py-2">Stock</th>
+            <% unless @category.present? %>
+              <th class="px-4 py-2">Category</th>
+            <% end %>
+            <th class="px-4 py-2">Price</th>
+            <th class="px-4 py-2">Availability</th>
+            <th class="px-4 py-2">Edit</th>
+            <th class="px-4 py-2">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <%= render product %>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="text-center my-10">No products found.</p>
+    <% end %>
+  </div>
+<% end %>

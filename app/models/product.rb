@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :category, counter_cache: true
   has_one_attached :image
-  validates :image, presence: true
+  validates :image, :name, :price, :size, presence: true
 
 
   enum :availability, {

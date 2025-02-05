@@ -1,35 +1,81 @@
-<%= form_with(model: product, class: "contents") do |form| %>
+<%= simple_form_for product, html: { class: "" } do |form| %>
   <% if product.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
-      <ul class="list-disc ml-6">
-        <% product.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-4 py-3 font-medium rounded-lg">
+      <h2 class="text-lg font-semibold"><%= pluralize(product.errors.count, "error") %> prevented this product from being saved:</h2>
+      <ul class="list-disc ml-6 mt-2">
+        <% product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": product.errors[:name].none?, "border-red-400 focus:outline-red-600": product.errors[:name].any?}] %>
+  <!-- Image Upload -->
+  <div class="my-8">
+    <%= form.input :image, label: "Image", as: :file,
+      label_html: { class: "text-white" },
+      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-whitefocus:bg-gray-300 focus:text-black" } %>
   </div>
-  <div class="my-5">
-    <%= form.label :description %>
-    <%= form.text_field :description, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": product.errors[:description].none?, "border-red-400 focus:outline-red-600": product.errors[:description].any?}] %>
+  <!-- Required Fields -->
+  <div class="my-8">
+    <%= form.input :name, label: "Name",
+      label_html: { class: "text-white" },
+      placeholder:"Enter product Name",
+      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-whitefocus:bg-gray-300 focus:text-black" } %>
   </div>
-  <div class="my-5">
-    <%= form.label :price %>
-    <%= form.text_field :price, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": product.errors[:price].none?, "border-red-400 focus:outline-red-600": product.errors[:price].any?}] %>
+  <div class="my-8">
+    <%= form.input :price, label: "Price",
+      label_html: { class: "text-white" },
+      placeholder:"350",
+      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-whitefocus:bg-gray-300 focus:text-black" } %>
   </div>
-  <div class="my-5">
-    <%= form.label :active %>
-    <%= form.checkbox :active, class: ["block shadow rounded-md border outline-none mt-2 h-5 w-5", {"border-gray-400 focus:outline-blue-600": product.errors[:active].none?, "border-red-400 focus:outline-red-600": product.errors[:active].any?}] %>
+  <div class="my-8">
+    <%= form.input :description, as: :text, label: "Description",
+      label_html: { class: "text-white" },
+      placeholder:"Write your description here ...",
+      input_html: { rows: 4, class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-whitefocus:bg-gray-300 focus:text-black" } %>
   </div>
-  <div class="my-5">
-    <%= form.label :category %>
-    <%= form.text_field :category, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": product.errors[:category].none?, "border-red-400 focus:outline-red-600": product.errors[:category].any?}] %>
+  <!-- Category and Enum Fields -->
+  <div class="my-8">
+    <%= form.input :category_id, as: :select, label: "Category",
+      collection: Category.all.pluck(:name, :id),
+      label_html: { class: "text-white" },
+      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-whitefocus:bg-gray-300 focus:text-black" },
+      include_blank: "Select a category",
+      selected: form.object.category_id %>
   </div>
+  <div class="my-8">
+    <%= form.input :availability, as: :select, label: "Availability",
+      collection: Product.availabilities.keys.map { |k| [k.humanize, k] },
+      label_html: { class: "text-white" },
+      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-whitefocus:bg-gray-300 focus:text-black" },
+      selected: form.object.availability || 'in_stock' %>
+  </div>
+  <!-- Size and Stock -->
+  <div class="my-8">
+    <%= form.input :size, as: :select, label: "Size",
+      collection: [['Small', 'small'], ['Medium', 'medium'], ['Large', 'large']],
+      label_html: { class: "text-white" },
+      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-whitefocus:bg-gray-300 focus:text-black" },
+      selected: form.object.size || 'medium' %>
+  </div>
+  <div class="my-8">
+    <%= form.input :stock, label: "Stock Amount",
+      label_html: { class: "text-white" },
+      placeholder:"350",
+      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-whitefocus:bg-gray-300 focus:text-black" } %>
+  </div>
+  <!-- Active Checkbox -->
+  <div class="my-8 flex items-center">
+    <%= form.input :active, as: :boolean, label: "Active?",
+      wrapper_html: { class: "flex items-center space-x-2" },
+      label_html: { class: "text-white" },
+      input_html: { class: "h-5 w-5 border-gray-300 rounded" } %>
+  </div>
+  <!-- Submit Button -->
   <div class="inline">
-    <%= form.submit class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+    <%= render(ButtonComponent.new(
+      text: 'Save',
+      classes: 'bg-bg-tertiary px-4 py-4 hover:bg-bg-secondary max-w-32 text-gray-900 hover:text-white hover:bg-bg-ternary'
+    )) %>
   </div>
 <% end %>
