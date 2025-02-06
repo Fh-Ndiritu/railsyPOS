@@ -1,5 +1,5 @@
 <%= link_to @href,
-class: "item-thumbnail rounded-lg h-48 md:h-48 lg:h-48 text-normal text-white hover:text-text-secondary duration-200 bg-bg-secondary  hover:bg-bg-tertiary #{@classes} ",
+class: "item-thumbnail custom-bar rounded-lg h-48 w-48 md:h-48 lg:h-48 text-normal text-white hover:text-text-secondary duration-200 bg-bg-secondary  hover:bg-bg-tertiary #{@classes} ",
 data: @data do %>
   <div class="thumbnail-content ">
     <!-- Image in top-right corner -->
@@ -15,7 +15,7 @@ data: @data do %>
     </div>
     <!-- Stacked title and count at bottom-left -->
     <div class="text-container">
-      <div class="item-title text-base font-semibold"><%= @title %></div>
+      <div class="item-title text-base font-semibold line-clamp-1"><%= @title %></div>
       <div class="item-count"><%= @count %> items</div>
     </div>
   </div>
