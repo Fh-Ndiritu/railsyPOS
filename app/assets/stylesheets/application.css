@@ -8,3 +8,18 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+input,
+textarea,
+select,
+select option {
+  background: #5b4850 !important;
+  color: white !important;
+}
+
+input:focus,
+textarea:focus,
+select option:hover {
+  background: #5e5e5e !important;
+  color: white !important;
+}

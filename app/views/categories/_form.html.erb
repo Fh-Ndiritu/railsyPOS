@@ -12,19 +12,19 @@
   <div class="my-8">
     <%= form.input :image, label: "Image", as: :file,
       label_html: { class: "text-white" },
-      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-space-100 focus:bg-gray-300 focus:text-black" } %>
+      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm " } %>
   </div>
   <div class="my-8">
     <%= form.input :name, label: "Name",
       label_html: { class: "text-white" },
       placeholder:"Enter Category Name",
-      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-space-100 focus:bg-gray-300 focus:text-black" } %>
+      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm" } %>
   </div>
   <div class="my-8">
     <%= form.input :description, as: :text, label: "Description",
     label_html: { class: "text-white" },
     placeholder:"Write your description here ...",
-    input_html: { rows: 4, class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm bg-[#3D4142] text-space-100 focus:bg-gray-300 focus:text-black" } %>
+    input_html: { rows: 4, class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm" } %>
   </div>
   <div class="my-8 flex items-center">
     <%= form.input :status, as: :boolean, label: "Active?",
