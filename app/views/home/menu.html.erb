@@ -1,12 +1,13 @@
+<% content_for :body_class, "" %>
 <%= turbo_stream_from 'categories' %>
 <%= turbo_stream_from 'products' %>
-<div class="flex w-screen h-screen">
-  <div class="sidebar-left bg-[#292C2D] w-2/12 h-screen rounded-tr-3xl rounded-br-3xl px-4 py-6 justify-center">
+<div class="flex w-full h-full ">
+  <div class="sidebar-left bg-[#292C2D] w-2/12 h-full rounded-tr-3xl rounded-br-3xl py-6 justify-center">
     <%= render('shared/sidebar_left') %>
   </div>
-  <div class="main-section w-10/12 px-4">
-    <div class=" w-full justify-between inline-flex py-6">
-      <h1 class="text-2xl font-semibold text-white">Categories</h1>
+  <div class="main-section w-10/12 pl-4 h-screen overflow-y-scroll custom-bar ">
+    <div class=" w-full justify-between inline-flex items-center" style="height: 10vh">
+      <h1 class="text-2xl font-semibold text-white my-2">Categories</h1>
       <%= render(ButtonComponent.new(
       text: 'Add New Category',
       classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-60 text-gray-900 hover:text-white',
@@ -17,7 +18,7 @@
     </div>
     <div class="w-full">
       <div class=" rounded-lg bg-[#565E60] p-4 pb-0">
-        <div class="rounded-lg overflow-x-auto bg-[#565E60] p-2 pb-6 custom-bar flex gap-4" id="categories">
+        <div class="rounded-lg overflow-x-auto bg-[#565E60] p-2 pb-6 flex gap-4 custom-bar " id="categories">
           <div class="item-link gap-4 active">
             <%= render(ItemThumbnailComponent.new(
         title: 'All',
@@ -48,6 +49,5 @@
     <%= turbo_frame_tag 'products' do %>
       <%= render partial: 'products/index', locals: { products: @products} %>
     <% end %>
-    >
   </div>
 </div>
