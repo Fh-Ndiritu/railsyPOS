@@ -1,0 +1,16 @@
+<% content_for :title, "Orders" %>
+<div class="main-section w-10/12 pl-4 h-screen overflow-y-scroll custom-bar ">
+  <div class="w-full">
+    <div class=" rounded-lg bg-[#565E60] p-4 pb-0">
+      <div class="rounded-lg overflow-x-auto bg-[#565E60] p-2 pb-6 flex gap-4 custom-bar " id="categories">
+        <% Category.active.each do |category| %>
+          <%= render category %>
+        <% end %>
+      </div>
+    </div>
+    <hr class="bg-white my-6">
+    <%= turbo_frame_tag 'products' do %>
+      <p class="w-full text-center text-white"> Select a category to view products</p>
+    <% end %>
+  </div>
+</div>
