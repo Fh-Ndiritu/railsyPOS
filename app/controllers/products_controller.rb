@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
-  before_action :set_category, only: %i[index create]
+  before_action :set_category, only: %i[index create items_preview]
 
   # GET /products or /products.json
   def index
@@ -9,6 +9,10 @@ class ProductsController < ApplicationController
     else
       @products = Product.limit(10)
     end
+  end
+
+  def items_preview
+      @products = @category.products.displayable
   end
 
   # GET /products/1 or /products/1.json

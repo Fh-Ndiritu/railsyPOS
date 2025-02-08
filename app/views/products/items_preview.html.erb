@@ -1,0 +1,19 @@
+<%= turbo_frame_tag "products" do %>
+  <% if @products.any? %>
+    <% @products.each do |product| %>
+      <div class="item-link gap-4" id="<%= dom_id product %>"
+          >
+        <%= render(OrderItemComponent.new(
+              title: product.name,
+              price: product.price,
+              classes: '',
+              size: product.size,
+              image_url: product.image.url,
+              data: { turbo_frame: 'products'}
+              )) %>
+      </div>
+    <% end %>
+  <% else %>
+    <p class=" my-10 text-white w-full text-center">No products found.</p>
+  <% end %>
+<% end %>

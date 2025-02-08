@@ -29,7 +29,7 @@
         )) %>
         </div>
         <% Category.active.each do |category| %>
-          <%= render category %>
+          <%= render partial: 'categories/category', locals: { href: category_products_path(category), category: category} %>
         <% end %>
       </div>
     </div>

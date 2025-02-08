@@ -21,7 +21,9 @@
       <div class="flex gap-4">
         <% @categories.each do |category| %>
           <div class="min-w-[200px]"> <!-- Adjust min-width as needed -->
-            <%= render category %>
+            <% Category.active.each do |category| %>
+              <%= render partial: 'categories/category', locals: { href: category_products_path(category), category: category} %>
+            <% end %>
           </div>
         <% end %>
       </div>

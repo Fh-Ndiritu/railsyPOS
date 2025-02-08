@@ -11,4 +11,6 @@ class Product < ApplicationRecord
 
   after_update_commit -> { broadcast_replace_to "products" }
   after_destroy -> { broadcast_remove_to "products" }
+
+  scope :displayable, -> { where(active: true).in_stock }
 end

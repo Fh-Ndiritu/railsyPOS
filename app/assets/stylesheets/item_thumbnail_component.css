@@ -39,15 +39,15 @@
 .item-count {
   font-size: 14px;
 }
-.item-link .item-thumbnail svg {
+.item-link .item-thumbnail.category-thumbnail svg {
   height: 60px;
   width: 60px;
 }
-.item-link.active .item-thumbnail svg path {
+.item-link.active .item-thumbnail.category-thumbnail svg path {
   fill: #333333;
 }
 
-.item-link.active .item-thumbnail:hover svg path {
+.item-link.active .item-thumbnail.category-thumbnail:hover svg path {
   fill: #333333;
   transition-duration: 200;
 }
@@ -57,11 +57,11 @@
   color: #333333;
 }
 
-.item-link .item-thumbnail svg path {
+.item-link .item-thumbnail.category-thumbnail svg path {
   fill: #fac1d9;
 }
 
-.item-link .item-thumbnail:hover svg path {
+.item-link .item-thumbnail:hover.category-thumbnail svg path {
   fill: #333333;
   transition-duration: 200;
 }

@@ -42,3 +42,7 @@
 .custom-bar::-webkit-scrollbar-thumb:hover {
   background: #4c2a5c;
 }
+
+.collapsed-sidebar .sidebar-left {
+  display: none;
+}

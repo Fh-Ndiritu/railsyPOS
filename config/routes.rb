@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :orders
   get "home/menu"
   resources :categories do
+    get "/items-preview" => "products#items_preview", as: :items_preview
     resources :products, only: [ :index, :create ]
   end
   resources :products

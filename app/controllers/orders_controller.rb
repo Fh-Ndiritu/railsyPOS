@@ -12,7 +12,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new
+    @order = Order.create
+    redirect_to edit_order_path(@order)
   end
 
   # GET /orders/1/edit
