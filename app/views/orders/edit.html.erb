@@ -5,12 +5,12 @@
     <div class=" rounded-lg bg-[#565E60] p-4 pb-0">
       <div class="rounded-lg overflow-x-auto bg-[#565E60] p-2 pb-6 flex gap-4 custom-bar " id="categories">
         <% Category.active_with_active_products.each do |category| %>
-          <%= render partial: 'categories/category', locals: { href: category_items_preview_path(category), category: category} %>
+          <%= render partial: 'orders/category', locals: { category: category, order: @order} %>
         <% end %>
       </div>
     </div>
     <hr class="bg-white my-6">
-    <%= turbo_frame_tag 'products' do %>
+    <%= turbo_frame_tag 'order_options' do %>
       <p class="w-full text-center text-white"> Select a category to add products to order</p>
     <% end %>
   </div>

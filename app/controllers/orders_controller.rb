@@ -1,12 +1,18 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :set_category, only: %i[options]
 
   # GET /orders or /orders.json
   def index
     @orders = Order.all
   end
 
-  # GET /orders/1 or /orders/1.json
+
+  def options
+    @products = @category.products.displayable if @category
+  end
+
+  # GET /orders/1 or /orders/1.jsonF
   def show
   end
 
@@ -67,5 +73,10 @@ class OrdersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def order_params
       params.expect(order: [ :customer_name, :progress, :items, :subtotal, :tax, :total ])
+    end
+
+
+    def set_category
+      @category = Category.find_by(id: params[:category_id].to_i)
     end
 end
