@@ -15,4 +15,8 @@ class Product < ApplicationRecord
   after_destroy -> { broadcast_remove_to "products" }
 
   scope :displayable, -> { where(active: true).in_stock }
+
+  def thumbnail
+    image.variant(resize_to_fill: [ 200, 200 ]).processed
+  end
 end

@@ -68,3 +68,5 @@ end
 # gem "image_processing", "~> 1.2" # Use Active Storage variants
 # gem "redcarpet", "~> 3.6" # Markdown processing
 # gem "wicked_pdf" # PDF generation
+
+gem "image_processing", "~> 1.13"

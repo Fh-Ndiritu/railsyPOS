@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :set_order, only: %i[ show edit update destroy]
   before_action :set_category, only: %i[options]
 
   # GET /orders or /orders.json
@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
 
   def options
     @products = @category.products.displayable if @category
+    @order = Order.find(params.expect(:order_id))
   end
 
   # GET /orders/1 or /orders/1.jsonF
@@ -32,8 +33,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: "Order was successfully created." }
-        format.json { render :show, status: :created, location: @order }
+        format.html { redirect_to home_path }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @order.errors, status: :unprocessable_entity }

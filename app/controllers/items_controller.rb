@@ -21,15 +21,32 @@ class ItemsController < ApplicationController
 
   # POST /items or /items.json
   def create
-    @item = Item.new(item_params)
+    @item = Item.find_or_initialize_by(item_params)
 
     respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: "Item was successfully created." }
-        format.json { render :show, status: :created, location: @item }
+      if @item.persisted?
+        update_quantity
       else
-        format.html { render :new, status: :unprocessable_entity }
+        unless @item.save
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @item.errors, status: :unprocessable_entity }
+        end
+      end
+      format.html { redirect_to order_options_path(@item.order, @item.product.category.id), notice: "Item was successfully updated" }
+      format.json { render :show, status: :ok, location: @item }
+    end
+  end
+
+  def update_quantity
+    case params[:commit]
+    when "add"
+      raise "This item is out of stock! " if @item.quantity == @item.product.stock
+      @item.increment! :quantity
+    when "subtract"
+      if @item.quantity <= 1 # remove from cart
+        @item.decrement! :quantity
+      else
+        @item.destroy
       end
     end
   end
@@ -65,6 +82,6 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.expect(item: [ :order_id, :product_id, :quantity, :price ])
+      params.permit(:order_id, :product_id)
     end
 end

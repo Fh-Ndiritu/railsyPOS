@@ -1,4 +1,5 @@
 <% content_for :title, "New Order" %>
+<%= turbo_stream_from 'order_items' %>
 <% content_for :body_class, "collapsed-sidebar" %>
 <div class="main-section w-full h-screen py-4 px-4 flex">
   <div class="w-9/12 pr-4">
