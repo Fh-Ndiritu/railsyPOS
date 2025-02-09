@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_08_141055) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_09_140600) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -48,6 +48,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_141055) do
     t.integer "products_count", default: 0
   end
 
+  create_table "items", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "product_id", null: false
+    t.integer "quantity"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_items_on_order_id"
+    t.index ["product_id"], name: "index_items_on_product_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "customer_name"
     t.integer "progress"
@@ -64,12 +75,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_141055) do
     t.string "description"
     t.float "price"
     t.boolean "active"
-    t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id", null: false
     t.string "size"
-    t.string "integer"
     t.integer "stock", default: 0
     t.integer "availability", default: 0
     t.index ["category_id"], name: "index_products_on_category_id"
@@ -77,5 +86,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_141055) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "items", "orders"
+  add_foreign_key "items", "products"
   add_foreign_key "products", "categories"
 end

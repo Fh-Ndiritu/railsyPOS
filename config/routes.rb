@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :items
   resources :orders
   get "home/menu"
   resources :categories do

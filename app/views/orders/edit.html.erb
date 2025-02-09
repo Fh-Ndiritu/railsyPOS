@@ -4,7 +4,7 @@
   <div class="w-9/12 pr-4">
     <div class=" rounded-lg bg-[#565E60] p-4 pb-0">
       <div class="rounded-lg overflow-x-auto bg-[#565E60] p-2 pb-6 flex gap-4 custom-bar " id="categories">
-        <% Category.active.each do |category| %>
+        <% Category.active_with_active_products.each do |category| %>
           <%= render partial: 'categories/category', locals: { href: category_items_preview_path(category), category: category} %>
         <% end %>
       </div>
@@ -16,5 +16,14 @@
   </div>
   <div class=" bg-[#292C2D] w-3/12 h-full justify-center px-4 py-6 text-white rounded-lg">
     <h2 class="text-xl">Order number #<%= @order.id %></h2>
+    <%= turbo_frame_tag 'order_items' do %>
+      <% if @order.items.any? %>
+        <% @order.items.each_with_index do |item, index| %>
+          <%= render partial: "items/item", locals: { item: item, index: index + 1 } %>
+        <% end %>
+      <% else %>
+        <p class="text-center my-10">Order has no items.</p>
+      <% end %>
+    <% end %>
   </div>
 </div>

@@ -9,6 +9,8 @@ class Product < ApplicationRecord
     in_stock: 1
   }
 
+  scope :active_and_available, -> { in_stock.where(active: true) }
+
   after_update_commit -> { broadcast_replace_to "products" }
   after_destroy -> { broadcast_remove_to "products" }
 
