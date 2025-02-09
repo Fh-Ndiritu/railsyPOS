@@ -1,0 +1,10 @@
+<% flash.each do |type, message| %>
+  <div class="flash-message <%= flash_class_for(type) %> p-4 mb-4 rounded-lg text-white">
+    <div class="flex items-center">
+      <div class="icon mr-2">
+        <%= flash_icon_for(type) %>
+      </div>
+      <span><%= message %></span>
+    </div>
+  </div>
+<% end %>

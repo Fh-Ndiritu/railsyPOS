@@ -3,14 +3,19 @@ class Item < ApplicationRecord
   belongs_to :product
   before_save :change_price
 
-  after_save_commit :broadcast_updates, if: :saved_change_to_quantity?
 
+  def increment_quantity
+    return false if quantity >= product.stock
+
+    increment!(:quantity)
+    true
+  end
+
+  def decrement_quantity
+      decrement!(:quantity)
+  end
 
   private
-
-  def broadcast_updates
-    broadcast_update_to "order_items"
-  end
 
   def change_price
     self.price = quantity * product.price
