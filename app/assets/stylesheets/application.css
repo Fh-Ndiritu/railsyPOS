@@ -23,3 +23,54 @@ select option:hover {
   background: #5b4850 !important;
   color: white !important;
 }
+
+#flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999; /* Ensure it appears above everything */
+  opacity: 0.8;
+}
+
+.flash-message {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.flash-message.notice {
+  background-color: #d1fae5; /* Light green */
+  color: #065f46; /* Dark green */
+}
+
+.flash-message.error {
+  background-color: #fee2e2; /* Light red */
+  color: #b91c1c; /* Dark red */
+}
+
+.flash-message.info {
+  background-color: #bfdbfe; /* Light blue */
+  color: #1e40af; /* Dark blue */
+}
+
+.flash-message .close-button {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: inherit;
+  cursor: pointer;
+  margin-left: 12px;
+}
+
+.flash-message.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+}

@@ -1,8 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :order
   belongs_to :product
-  before_save :change_price
-
 
   def increment_quantity
     return false if quantity >= product.stock
@@ -15,9 +13,7 @@ class Item < ApplicationRecord
       decrement!(:quantity)
   end
 
-  private
-
-  def change_price
-    self.price = quantity * product.price
+  def price
+    quantity * product.price
   end
 end

@@ -15,16 +15,11 @@
       <p class="w-full text-center text-white"> Select a category to add products to order</p>
     <% end %>
   </div>
-  <div class=" bg-[#292C2D] w-3/12 h-full justify-center px-4 py-6 text-white rounded-lg">
-    <h2 class="text-xl">Order number #<%= @order.id %></h2>
-    <%= turbo_frame_tag 'order_items' do %>
-      <% if @order.items.any? %>
-        <% @order.items.each_with_index do |item, index| %>
-          <%= render partial: "items/item", locals: { item: item, index: index + 1 } %>
-        <% end %>
-      <% else %>
-        <p class="text-center my-10">Order has no items.</p>
+  <div class=" bg-[#292C2D] w-3/12 h-full justify-center px-4 py-6 text-white rounded-lg oveflor-hidden">
+    <div class="h-full">
+      <%= turbo_frame_tag 'order_details' do %>
+        <%= render partial: 'details', locals: { order: @order } %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
