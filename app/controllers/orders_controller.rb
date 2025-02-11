@@ -44,11 +44,12 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1 or /orders/1.json
   def update
     respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to @order, notice: "Order was successfully updated." }
+      if @order.items.present? && @order.update(order_params)
+        format.html { redirect_to home_menu_path, notice: "Order was successfully updated." }
         format.json { render :show, status: :ok, location: @order }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        flash[:error] =  "Order has no items!" if @order.items.blank?
+        format.html { redirect_to edit_order_path(@order) }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
@@ -72,7 +73,7 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.expect(order: [ :customer_name, :progress, :items, :subtotal, :tax, :total ])
+      params.permit(order: [ :customer_name, :progress ])
     end
 
 

@@ -1,5 +1,5 @@
 <%= turbo_frame_tag 'order_details', class: 'h-full' do %>
-  <h2 class="text-xl my-auto my-3">Order number #<%= order.id %></h2>
+  <h2 class="text-xl my-3">Order number #<%= order.id %></h2>
   <%= turbo_frame_tag 'order_items' do %>
     <div class="h-3/6 custom-bar overflow-y-auto p-2">
       <% if order.items.any? %>
@@ -13,11 +13,17 @@
   <% end %>
   <%= turbo_frame_tag 'order_cost' do %>
     <div class="block w-full bg-bg-ternary hover:bg-bg-primary rounded-xl px-2 py-4 my-8 justify-between items-center relative h-2/6 custom-bar overflow-y-auto">
-      <div>
+      <div class="pb-4 border-t border-dashed border-bg-secondary">
         <p class="py-1 text-font-semibold flex w-full justify-between"> <span>Subtotal</span> <span><%= number_to_currency(order.subtotal, unit: 'Kes') %></span></p>
         <p class="py-2 text-font-semibold flex w-full justify-between"> <span>Tax</span> <span><%= number_to_currency(order.tax, unit: 'Kes') %></span></p>
-        <p class=" my-4 pt-4 border-t border-dashed border-bg-secondary text-font-semibold flex w-full justify-between"> <span>Total</span> <span><%= number_to_currency(order.tax, unit: 'Kes') %></span></p>
+        <p class="my-2 pt-2 border-t border-dashed border-bg-secondary text-font-semibold flex w-full justify-between"> <span>Total</span> <span><%= number_to_currency(order.tax, unit: 'Kes') %></span></p>
       </div>
+      <%= form_with model: order, data: {turbo: false} do |f| %>
+        <button type="submit" name="progress" value="kitchen"
+        class="btn  flex items-center font-semibold rounded-lg text-center duration-200 bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-60 text-gray-900 hover:text-white">
+          Send to Kitchen
+        </button>
+      <% end %>
     </div>
   <% end %>
 <% end %>

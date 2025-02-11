@@ -30,7 +30,7 @@ select option:hover {
   left: 0;
   width: 100%;
   z-index: 9999; /* Ensure it appears above everything */
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .flash-message {
