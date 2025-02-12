@@ -1,26 +1,43 @@
-<div id="<%= dom_id order %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Customer name:</strong>
-    <%= order.customer_name %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Progress:</strong>
-    <%= order.progress %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Items:</strong>
-    <%= order.items %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Subtotal:</strong>
-    <%= order.subtotal %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Tax:</strong>
-    <%= order.tax %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Total:</strong>
-    <%= order.total %>
-  </p>
-</div>
+<%= turbo_frame_tag dom_id(order) do %>
+  <div class="bg-bg-secondary p-4 rounded-lg text-white block">
+    <div class="flex w-full items-center justify-between pb-4">
+      <span>Order # <%= order.id %></span>
+      <div class="rounded-lg px-4 py-2  text-text-secondary <%= order.progress %>">
+        <%= order.progress %>
+      </div>
+    </div>
+    <div class="flex justify-between pb-4 border-b border-bg-ternary">
+      <span><%= order.created_at.strftime("%A, %d, %Y") %></span>
+      <span><%= order.created_at.strftime("%l:%M %p") %></span>
+    </div>
+    <div class=" border-b border-bg-ternary">
+      <table>
+        <thead>
+          <tr class="opacity-60">
+            <th>Qty</th>
+            <th>Item</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% order.items.each do |item| %>
+            <tr>
+              <td><%= item.quantity %></td>
+              <td><%= item.name %></td>
+              <td><%= item.price %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="flex w-full justify-between py-3">
+        <span>SubTotal</span>
+        <span><%= order.subtotal %></span>
+      </div>
+    </div>
+    <div>
+      <!--Icons will be here-->
+    </div>
+  </div>
+<% end %>

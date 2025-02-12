@@ -1,0 +1,8 @@
+<% content_for :title, "Orders" %>
+<div class="sidebar-left bg-[#292C2D] w-2/12 h-full rounded-tr-3xl rounded-br-3xl py-6 justify-center">
+  <%= render('shared/sidebar_left') %>
+</div>
+<div class="main-section w-full h-screen py-4 px-4 flex">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 gap-4 w-full">
+    <%= render @orders %>
+  </div>

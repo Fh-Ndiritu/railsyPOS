@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.in_process
   end
 
 
@@ -73,7 +73,7 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.permit(order: [ :customer_name, :progress ])
+      params.expect(order: [ :customer_name, :progress ])
     end
 
 

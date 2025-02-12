@@ -1,0 +1,23 @@
+.orders .kitchen {
+  background: #ffc3c3;
+}
+.orders .ready {
+  background: #ffedbe;
+}
+.orders .complete {
+  background: #e3ffe4;
+}
+.orders .cart {
+  background: #a7a7a7;
+}
+
+.orders table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+}
+.orders th,
+.orders td {
+  padding: 10px;
+  text-align: left;
+}

@@ -39,7 +39,12 @@ group :development, :test do
   gem "debug", platforms: %i[mri windows], require: "debug/prelude" # Debugging tool
   gem "brakeman", require: false # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "rubocop-rails-omakase", require: false # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-
+  gem "rubocop-discourse", "~> 3.0"
+  gem "rubocop-packaging"
+  gem "rubocop-performance"
+  gem "rubocop-rails-accessibility"
+  gem "rubocop-rspec"
+  gem "rubocop-shopify"
   gem "rspec-rails", "~> 6.0" # Testing framework
   gem "dotenv-rails" # Load environment variables from .env
   gem "pry-byebug" # Debugging with Pry
