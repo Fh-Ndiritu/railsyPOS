@@ -14,7 +14,7 @@ class Order < ApplicationRecord
   end
 
   enum :progress, {
-    cart: 0,
+    pending: 0,
     kitchen: 1,
     ready: 2,
     complete: 3

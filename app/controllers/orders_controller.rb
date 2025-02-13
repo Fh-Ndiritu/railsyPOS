@@ -4,9 +4,13 @@ class OrdersController < ApplicationController
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.in_process
+    progress = params[:progress]
+    if progress && Order.respond_to?(progress)
+      @orders = Order.send(progress)
+    else
+      @orders = Order.in_process.or(Order.complete)
+    end
   end
-
 
   def options
     @products = @category.products.displayable if @category

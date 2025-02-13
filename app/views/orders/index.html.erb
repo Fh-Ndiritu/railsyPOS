@@ -2,7 +2,47 @@
 <div class="sidebar-left bg-[#292C2D] w-2/12 h-full rounded-tr-3xl rounded-br-3xl py-6 justify-center">
   <%= render('shared/sidebar_left') %>
 </div>
-<div class="main-section w-full h-screen py-4 px-4 flex">
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 gap-4 w-full">
-    <%= render @orders %>
+<div class="main-section w-full h-screen py-4 px-4 block text-text-primary" data-controller="orders">
+  <div class="order-tabs w-full my-6 flex justify-between">
+    <div class="tabs flex w-6/12 text-lg justify-between">
+      <div data-order-progress="all active text-white flex" class="all">
+        <%= render(ButtonComponent.new(
+        text: 'All',
+        href: orders_path,
+        classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-32 text-gray-900 hover:text-white hover:bg-bg-ternary'
+        )
+       ) %>
+      </div>
+      <% Order.progresses.keys.each do |progress| %>
+        <div data-order-progress="<%= progress %>" class="<%= progress %>_orders text-white flex">
+          <%= render(ButtonComponent.new(
+          text: progress,
+          href: orders_path(progress: progress),
+          data: { turbo_frame: 'orders'},
+          classes: 'active:bg-bg-tertiary px-4 py-2 bg-bg-primary max-w-32 text-text-primary hover:text-text-secondary hover:bg-bg-tertiary'
+          )
+          ) %>
+        </div>
+      <% end %>
+    </div>
+    <%= render(ButtonComponent.new(
+      text: 'Add New Order',
+      classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-60 text-gray-900 hover:text-white',
+      href: new_order_path,
+      data: { turbo: false}
+      )
+      ) %>
   </div>
+  <div class="text-text-primary">
+    <%= turbo_frame_tag "orders" do %>
+      <% if @orders.any? %>
+        <div class="row grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 gap-4 w-full">
+          <%= render @orders %>
+        </div>
+      <% else %>
+        <p class="text-center my-10 text-text-primary">No Orders found.</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+>

@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :orders do
     get "/options/:category_id" => "orders#options", as: :options
   end
-
   get "home/menu"
   resources :categories do
     resources :products, only: [ :index, :create ]

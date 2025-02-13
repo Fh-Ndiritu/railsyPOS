@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_09_140600) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_13_184902) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -61,7 +61,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_09_140600) do
 
   create_table "orders", force: :cascade do |t|
     t.string "customer_name"
-    t.integer "progress"
+    t.integer "progress", default: 0
     t.string "items"
     t.string "subtotal"
     t.string "tax"

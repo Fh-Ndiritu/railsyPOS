@@ -21,3 +21,7 @@
   padding: 10px;
   text-align: left;
 }
+
+.orders .action-button:hover svg path {
+  fill: #5e5e5e;
+}
