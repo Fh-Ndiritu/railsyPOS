@@ -6,9 +6,9 @@ class OrdersController < ApplicationController
   def index
     progress = params[:progress]
     if progress && Order.respond_to?(progress)
-      @orders = Order.send(progress)
+      @orders = Order.send(progress).limit(20)
     else
-      @orders = Order.in_process.or(Order.complete)
+      @orders = Order.in_process.or(Order.complete).limit(20)
     end
   end
 
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.items.present? && @order.update(order_params)
-        format.html { redirect_to home_menu_path, notice: "Order was successfully updated." }
+        format.html { redirect_to orders_path, notice: "Order was successfully updated." }
         format.json { render :show, status: :ok, location: @order }
       else
         flash[:error] =  "Order has no items!" if @order.items.blank?

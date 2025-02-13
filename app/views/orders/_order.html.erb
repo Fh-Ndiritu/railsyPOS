@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(order) do %>
   <div class="bg-bg-secondary p-4 rounded-lg text-white block">
     <div class="flex w-full items-center justify-between pb-4">
-      <span>Order # <%= order.id %></span>
+      <span>Order #<%= order.id %></span>
       <div class="rounded-lg px-4 py-2  text-text-secondary <%= order.progress %>">
         <%= order.progress %>
       </div>
@@ -33,7 +33,7 @@
     <div>
       <div class="flex w-full justify-between py-3">
         <span>SubTotal</span>
-        <span><%= order.subtotal %></span>
+        <span><%= number_with_precision(order.subtotal, precision: 2) %></span>
       </div>
     </div>
     <div class="flex w-full justify-between">

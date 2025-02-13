@@ -18,12 +18,7 @@
         <p class="py-2 text-font-semibold flex w-full justify-between"> <span>Tax</span> <span><%= number_to_currency(order.tax, unit: 'Kes') %></span></p>
         <p class="my-2 pt-2 border-t border-dashed border-bg-secondary text-font-semibold flex w-full justify-between"> <span>Total</span> <span><%= number_to_currency(order.tax, unit: 'Kes') %></span></p>
       </div>
-      <%= form_with model: order, data: {turbo: false} do |f| %>
-        <button type="submit" name="order[progress]" value="kitchen"
-        class="btn  flex items-center font-semibold rounded-lg text-center duration-200 bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-60 text-gray-900 hover:text-white">
-          Send to Kitchen
-        </button>
-      <% end %>
+      <%= progress_form(order) if order%>
     </div>
   <% end %>
 <% end %>
