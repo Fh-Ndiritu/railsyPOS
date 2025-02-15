@@ -1,7 +1,7 @@
 class Category < ApplicationRecord
-  has_one_attached :image
   has_many :products, dependent: :destroy
-  validates :name, presence: true
+  has_one_attached :image, dependent: :destroy
+  validates :name, presence: true, uniqueness: true
   validates :image, presence: true
 
   default_scope { order(:name) }
@@ -16,7 +16,4 @@ class Category < ApplicationRecord
     .merge(Product.active_and_available)
     .distinct
   }
-
-
-  after_create_commit -> { broadcast_append_to "categories" }
 end

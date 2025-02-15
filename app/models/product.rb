@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :category, counter_cache: true
-  has_one_attached :image
+  has_one_attached :image, dependent: :destroy
   validates :image, :name, :price, :size, presence: true
 
 

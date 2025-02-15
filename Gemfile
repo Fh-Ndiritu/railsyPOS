@@ -33,6 +33,8 @@ gem "simple_form", github: "heartcombo/simple_form" # Simple form builder
 # Utilities
 gem "acts_as_list" # Manage ordered lists in ActiveRecord
 gem "view_component" # Framework for creating reusable, testable, & encapsulated view components
+gem "factory_bot_rails" # Test data generation
+gem "faker", "~> 3.3" # Generate fake data
 
 # Development and testing gems
 group :development, :test do
@@ -50,10 +52,8 @@ group :development, :test do
   gem "pry-byebug" # Debugging with Pry
   gem "pry-rails" # Integrate Pry with Rails console
   gem "erb_lint" # Lint ERB files
-  gem "factory_bot_rails" # Test data generation
   gem "rubocop", "~> 1.54", ">= 1.54.2" # Ruby static code analyzer
   gem "rubocop-rails" # Rails-specific Rubocop rules
-  gem "faker", "~> 3.3" # Generate fake data
 end
 
 group :development do

@@ -8,9 +8,11 @@
  #     MovieGenre.find_or_create_by!(name: genre_name)
  #   end
 
- ActiveStorage::Current.url_options = { host: 'localhost:3000' } if Rails.env.development?
-10.times do
-  FactoryBot.create(:category) do |category|
-    2.times { FactoryBot.create(:product, category:) }
+ if Rails.env.developmemt?
+  ActiveStorage::Current.url_options = { host: 'localhost:3000' }
+  10.times do
+    FactoryBot.create(:category) do |category|
+      2.times { FactoryBot.create(:product, category:) }
+    end
   end
-end
+ end
