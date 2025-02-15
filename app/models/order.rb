@@ -20,4 +20,8 @@ class Order < ApplicationRecord
     ready: 2,
     complete: 3
   }
+
+  def server_name
+    ""
+  end
 end

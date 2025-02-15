@@ -75,3 +75,7 @@ end
 # gem "wicked_pdf" # PDF generation
 
 gem "image_processing", "~> 1.13"
+
+gem "prawn", "~> 2.5"
+
+gem "prawn-table", "~> 0.2.2"

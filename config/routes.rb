@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "receipts/show/:id" => 'receipts#show', as: :show_receipt
+  get "receipts/print"
   resources :items
 
   resources :orders do
